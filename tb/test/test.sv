@@ -1,5 +1,5 @@
-`include "environment.sv"
-`include "sequence.sv"
+`include "../env/environment.sv"
+`include "../sequence.sv"
 class adder_test extends uvm_test;
   `uvm_component_utils(adder_test)
   

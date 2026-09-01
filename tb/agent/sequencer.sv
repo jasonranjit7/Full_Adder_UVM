@@ -1,4 +1,4 @@
-`include "sequence_item.sv"
+`include "../sequence_item.sv"
 class adder_seqr extends uvm_sequencer#(adder_seq_item);
   `uvm_component_utils(adder_seqr)
   
