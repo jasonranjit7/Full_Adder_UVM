@@ -23,12 +23,20 @@ class adder_scoreboard extends uvm_scoreboard;
     tx_q.push_back(tx);
     
     expected_sum = tx.a^tx.b^tx.cin;
+    expected_cout = (tx.a && tx.b)||(tx.cin && tx.b)||(tx.a && tx.cin);
     
     if(tx.sum == expected_sum) begin
-      `uvm_info("SBD", $sformatf("PASS: expected=%0b, actual=%0b", expected_sum, tx.sum), UVM_LOW)
+      `uvm_info("SBD", $sformatf("PASS: expected sum=%0b, actual=%0b", expected_sum, tx.sum), UVM_LOW)
     end
     else  begin
-      `uvm_error("SBD", $sformatf("FAIL: expected=%0b, actual=%0b", expected_sum, tx.sum))
+      `uvm_error("SBD", $sformatf("FAIL: expected sum=%0b, actual=%0b", expected_sum, tx.sum))
+    end
+    
+    if(tx.cout == expected_cout) begin
+      `uvm_info("SBD", $sformatf("PASS: expected cout =%0b, actual=%0b", expected_cout, tx.cout), UVM_LOW)
+    end
+    else  begin
+      `uvm_error("SBD", $sformatf("FAIL: expected cout =%0b, actual=%0b", expected_cout, tx.cout))
     end
     
   endfunction
